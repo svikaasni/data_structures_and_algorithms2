@@ -98,3 +98,51 @@ Let:
 - **Difficulty:** Medium
 - **Language:** Python
 - **Topics:** Array, Hash Table, String, Sorting
+
+
+---
+
+# LeetCode 3331 – Find Subtree Sizes After Changes
+
+## Problem Statement
+
+You are given:
+- An integer array `parent`, where `parent[i]` represents the parent of node `i` in a rooted tree.
+- A string `s`, where `s[i]` represents the character assigned to node `i`.
+
+For every node, find the nearest ancestor (excluding itself) having the same character. If such an ancestor exists, change the node's parent to that ancestor.
+
+After performing all parent changes simultaneously, return an array `answer`, where `answer[i]` represents the size of the subtree rooted at node `i`.
+
+## Approach: DFS + Hash Map + Tree Construction
+
+The solution uses three main steps.
+
+### 1. Build the Original Tree
+- Create an adjacency list using the `parent` array.
+- Store the children of each node.
+
+### 2. Find the Nearest Matching Ancestor
+- Perform an iterative DFS traversal.
+- Maintain a dictionary called `last` to track the nearest ancestor for each character.
+- If the current node has an ancestor with the same character, update its parent.
+- Otherwise, retain its original parent.
+- Restore the dictionary values during backtracking to maintain the correct ancestor information for different branches.
+
+### 3. Calculate Subtree Sizes
+- Construct a new tree using the updated parent relationships.
+- Traverse the modified tree.
+- Initialize every node's subtree size to `1`.
+- Process nodes in reverse traversal order and add the sizes of their child subtrees.
+
+## Python Solution
+
+```python
+class Solution:
+    def findSubtreeSizes(self, parent: List[int], s: str) -> List[int]:
+        n = len(parent)
+
+        children = [[] for _ in range(n)]
+
+        for i in range(1, n):
+            children
