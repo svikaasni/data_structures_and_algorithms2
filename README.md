@@ -146,3 +146,97 @@ class Solution:
 
         for i in range(1, n):
             children
+
+
+---
+
+LeetCode 1352 – Product of the Last K Numbers
+
+Difficulty: Medium
+Topics: Array, Design, Prefix Product
+
+Problem Description
+
+Design a data structure that supports two operations:
+
+- "add(num)": Adds an integer "num" to the stream.
+- "getProduct(k)": Returns the product of the last "k" numbers in the stream.
+
+If the last "k" numbers contain zero, return "0".
+
+Approach: Prefix Product
+
+Maintain an array of prefix products to calculate the product of the last "k" elements efficiently.
+
+Algorithm
+
+1. Initialize the prefix product array with "[1]".
+2. When adding a number:
+   - If the number is "0", reset the prefix array to "[1]".
+   - Otherwise, multiply it by the previous prefix product and append the result.
+3. When calculating the product of the last "k" numbers:
+   - If "k >= len(prefix)", return "0" because the range contains a zero.
+   - Otherwise, divide the latest prefix product by the prefix product before the last "k" elements.
+
+Python Solution
+
+class ProductOfNumbers:
+
+    def __init__(self):
+        self.prefix = [1]
+
+    def add(self, num: int) -> None:
+        if num == 0:
+            self.prefix = [1]
+        else:
+            self.prefix.append(self.prefix[-1] * num)
+
+    def getProduct(self, k: int) -> int:
+        if k >= len(self.prefix):
+            return 0
+
+        return self.prefix[-1] // self.prefix[-k-1]
+
+Example
+
+Input:
+
+add(3)
+add(0)
+add(2)
+add(5)
+add(4)
+getProduct(2)
+getProduct(3)
+getProduct(4)
+
+Output:
+
+20
+40
+0
+
+Complexity Analysis
+
+Operation| Time Complexity
+"add(num)"| O(1)
+"getProduct(k)"| O(1)
+
+Space Complexity: O(n), where "n" is the number of elements stored since the most recent zero.
+
+Key Learnings
+
+- Understanding prefix products.
+- Applying cumulative multiplication.
+- Handling zero efficiently by resetting the prefix array.
+- Optimizing range product queries to O(1) time.
+
+Key Concept
+
+The product of the last "k" elements can be calculated using:
+
+[
+Product = \frac{Prefix[n]}{Prefix[n-k]}
+]
+
+This approach avoids repeatedly multiplying the last "k" elements and provides an efficient solution.
