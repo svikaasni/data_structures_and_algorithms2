@@ -1,4 +1,4 @@
-# LeetCode 49 – Group Anagrams
+s# LeetCode 49 – Group Anagrams
 
 ## Problem Statement
 Given an array of strings `strs`, group all anagrams together. Anagrams are words that contain the same characters with the same frequency but may appear in a different order.
@@ -240,3 +240,68 @@ Product = \frac{Prefix[n]}{Prefix[n-k]}
 ]
 
 This approach avoids repeatedly multiplying the last "k" elements and provides an efficient solution.
+
+---
+
+
+LeetCode 3411 – Maximum Subarray With Equal Products
+
+Problem
+
+Given an integer array "nums", find the maximum length of a contiguous subarray where the product of all elements is equal to the product of the GCD and LCM of all elements.
+
+Approach: Brute Force
+
+1. Initialize "ans = 0" to store the maximum valid subarray length.
+2. Iterate through the array using index "i" as the starting point.
+3. Initialize:
+   - "prod = 1" – product of elements.
+   - "g = 0" – GCD of elements.
+   - "l = 1" – LCM of elements.
+4. Extend the subarray using index "j".
+5. Update the product, GCD and LCM for every new element.
+6. Check whether "prod == g * l".
+7. If the condition is satisfied, update the maximum length.
+8. Return the maximum length.
+
+Python Code
+
+from math import gcd, lcm
+
+class Solution:
+    def maxLength(self, nums: List[int]) -> int:
+        n = len(nums)
+        ans = 0
+
+        for i in range(n):
+            prod = 1
+            g = 0
+            l = 1
+
+            for j in range(i, n):
+                prod *= nums[j]
+                g = gcd(g, nums[j])
+                l = lcm(l, nums[j])
+
+                if prod == g * l:
+                    ans = max(ans, j - i + 1)
+
+        return ans
+
+Complexity Analysis
+
+- Time Complexity: O(n² × log M), where "n" is the array length and "M" is the maximum element.
+- Space Complexity: O(1), as only a constant number of variables are used.
+
+Key Concepts
+
+- Arrays
+- Brute Force
+- Nested Loops
+- GCD (Greatest Common Divisor)
+- LCM (Least Common Multiple)
+- Subarrays
+
+Key Learning
+
+This problem demonstrates how to explore all contiguous subarrays while maintaining their product, GCD and LCM incrementally instead of recalculating them from scratch.
