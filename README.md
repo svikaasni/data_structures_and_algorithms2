@@ -305,3 +305,48 @@ Key Concepts
 Key Learning
 
 This problem demonstrates how to explore all contiguous subarrays while maintaining their product, GCD and LCM incrementally instead of recalculating them from scratch.
+
+
+---
+
+
+LeetCode 3934 – Smallest Unique Subarray
+
+Problem
+
+Find the minimum length of a subarray that occurs exactly once in the given array.
+
+Approach
+
+Binary Search + Sliding Window + Double Rolling Hash
+
+1. Binary Search: Search for the minimum valid subarray length.
+2. Sliding Window: Generate all contiguous subarrays of a fixed length efficiently.
+3. Rolling Hash: Calculate and update hash values without repeatedly processing entire subarrays.
+4. Frequency Map: Store the frequency of each subarray hash and check whether any subarray occurs exactly once.
+5. If a unique subarray exists, search for a smaller length; otherwise, search for a larger length.
+
+Python Solution
+
+- Uses two independent hash functions to reduce collision probability.
+- Updates window hashes in constant time.
+- Uses a dictionary to track subarray frequencies.
+
+Complexity Analysis
+
+- Time Complexity: O(n log n)
+- Space Complexity: O(n)
+
+Where "n" is the length of the input array.
+
+Key Concepts
+
+- Binary Search on Answer
+- Sliding Window
+- Rolling Hash
+- Hash Maps
+- Subarray Frequency Counting
+
+Learning Outcome
+
+This problem demonstrates how binary search can optimize minimum-length problems when validity is monotonic. Combining sliding windows and rolling hashes allows efficient comparison of contiguous subarrays.
