@@ -350,3 +350,74 @@ Key Concepts
 Learning Outcome
 
 This problem demonstrates how binary search can optimize minimum-length problems when validity is monotonic. Combining sliding windows and rolling hashes allows efficient comparison of contiguous subarrays.
+
+
+---
+
+LeetCode 3360 – Stone Removal Game
+
+Problem Description
+
+Alice and Bob play a game starting with "n" stones.
+
+- Alice starts by removing 10 stones.
+- Bob removes 9 stones.
+- Alice removes 8 stones.
+- Bob removes 7 stones.
+- The number of stones to remove decreases by 1 after every turn.
+- A player loses if they cannot remove the required number of stones.
+
+The task is to determine whether Alice wins.
+
+Approach: Simulation
+
+1. Initialize "turn = 10", representing the first number of stones Alice must remove.
+2. Check whether the remaining stones are sufficient for the current turn.
+3. If sufficient, subtract the required stones.
+4. Decrease "turn" by 1 after every successful move.
+5. Continue until a player cannot make their move.
+6. Determine the winner based on whose turn it is.
+
+Python Solution
+
+class Solution:
+    def canAliceWin(self, n: int) -> bool:
+        turn = 10
+
+        while n >= turn:
+            n -= turn
+            turn -= 1
+
+        return turn % 2 == 1
+
+Example
+
+Input:
+
+n = 12
+
+Output:
+
+True
+
+Explanation:
+
+- Alice removes 10 stones. Remaining = 2.
+- Bob needs to remove 9 stones but only 2 remain.
+- Bob cannot make the move, so Alice wins.
+
+Complexity Analysis
+
+- Time Complexity: O(1) – At most 10 iterations.
+- Space Complexity: O(1) – Uses only constant extra space.
+
+Key Concepts
+
+- Simulation
+- While Loop
+- Alternating Turns
+- Conditional Logic
+
+Learning Outcome
+
+This problem demonstrates how to simulate a turn-based game using a loop and track alternating player turns to determine the winner.
