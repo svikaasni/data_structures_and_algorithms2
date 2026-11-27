@@ -421,3 +421,45 @@ Key Concepts
 Learning Outcome
 
 This problem demonstrates how to simulate a turn-based game using a loop and track alternating player turns to determine the winner.
+
+---
+
+LeetCode 3946 – Maximum Number of Items From Sale I
+
+Problem
+
+Given a list of items, where each item contains a factor and a price, and a limited budget, find the maximum number of items that can be obtained.
+
+When purchasing an item type for the first time, additional free items are received based on the divisibility of their factors. Further purchases of the same type do not provide additional free items.
+
+Approach: Dynamic Programming (DP)
+
+1. Iterate through each item and calculate the number of free items obtained from its first purchase.
+2. Maintain a DP array to track the maximum number of items obtainable for each budget.
+3. Consider two possibilities:
+   - First purchase: Gain the purchased item and all eligible free items.
+   - Additional purchase: Gain only one item.
+4. Update the DP array by choosing the maximum result.
+5. Return the maximum number of items obtainable within the budget.
+
+Complexity Analysis
+
+- Time Complexity: O(n² + n × B)
+- Space Complexity: O(B)
+
+Where:
+
+- "n" = Number of item types
+- "B" = Available budget
+
+Key Concepts
+
+- Dynamic Programming
+- 0/1 Knapsack
+- Unbounded Knapsack
+- Divisibility
+- Space Optimization
+
+Language
+
+Python 3
